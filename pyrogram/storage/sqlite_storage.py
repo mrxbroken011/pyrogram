@@ -132,11 +132,11 @@ class SQLiteStorage(Storage):
             peers
         )
 
-    async def get_peer_by_id(self, peer_id: int):
-    r = self.conn.execute(
-        "SELECT id, access_hash, type FROM peers WHERE id = ?",
-        (peer_id,)
-    ).fetchone()
+        async def get_peer_by_id(self, peer_id: int):
+        r = self.conn.execute(
+            "SELECT id, access_hash, type FROM peers WHERE id = ?",
+            (peer_id,)
+        ).fetchone()
 
     if r is None:
         print(f"Peer ID missing, adding to database: {peer_id}")

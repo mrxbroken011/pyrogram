@@ -133,15 +133,28 @@ class SQLiteStorage(Storage):
         )
 
     async def get_peer_by_id(self, peer_id: int):
-        r = self.conn.execute(
-            "SELECT id, access_hash, type FROM peers WHERE id = ?",
-            (peer_id,)
-        ).fetchone()
+    r = self.conn.execute(
+        "SELECT id, access_hash, type FROM peers WHERE id = ?",
+        (peer_id,)
+    ).fetchone()
 
-        if r is None:
-            raise KeyError(f"ID not found: {peer_id}")
+    if r is None:
+        print(f"Peer ID missing, adding to database: {peer_id}")
+        try:
+            # Default type "group" assume karke database me add kar raha hai
+            self.conn.execute(
+                "INSERT INTO peers (id, access_hash, type) VALUES (?, ?, ?)",
+                (peer_id, 0, "group")  
+            )
+            self.conn.commit()
 
-        return get_input_peer(*r)
+            # Return fake peer so that it doesn't break Pyrogram execution
+            return get_input_peer(peer_id, 0, "group")
+        except Exception as e:
+            raise KeyError(f"Failed to add Peer ID: {peer_id}, Error: {e}")
+
+    return get_input_peer(*r)
+
 
     async def get_peer_by_username(self, username: str):
         r = self.conn.execute(

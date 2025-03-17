@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://github.com/pyrogram/pyrogram">
+    <a href="https://github.com/mrxbroken011/pyrogram">
         <img src="https://raw.githubusercontent.com/pyrogram/artwork/master/artwork/pyrogram-logo.png" alt="Pyrogram" width="128">
     </a>
     <br>
@@ -16,10 +16,7 @@
     <a href="https://docs.pyrogram.org/releases">
         Releases
     </a>
-    •
-    <a href="https://t.me/pyrogram">
-        News
-    </a>
+    
 </p>
 
 ## Pyrogram
@@ -67,4 +64,4 @@ pip3 install pyrogram
 
 - Check out the docs at https://docs.pyrogram.org to learn more about Pyrogram, get started right
 away and discover more in-depth material for building your client applications.
-- Join the official channel at https://t.me/pyrogram and stay tuned for news, updates and announcements.
+
